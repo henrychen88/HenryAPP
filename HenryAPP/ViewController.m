@@ -10,15 +10,21 @@
 #import "AppDelegate.h"
 #import <WeiboSDK.h>
 #import <AFNetworking/AFNetworking.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/TencentMessageObject.h>
+#import <TencentOpenAPI/QQApiInterface.h>
 #import "AppDelegate.h"
 
-@interface ViewController ()
+@interface ViewController ()<TencentSessionDelegate>
 /** description */
 @property(nonatomic, strong) UITableView *tabelView;
 /** 索引 */
 @property(nonatomic, assign) NSInteger index;
 /** description */
 @property(nonatomic, strong) AppDelegate *appDelegate;
+
+/** description */
+@property(nonatomic, strong) TencentOAuth *tencentOauth;
 @end
 
 @implementation ViewController
@@ -32,7 +38,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    CGRect frame = CGRectMake(100, 50, 100, 50);
+    CGRect frame = CGRectMake(50, 50, 100, 50);
     UIButton *button = [[UIButton alloc]initWithFrame:frame];
     [button setTitle:@"微博登陆" forState:UIControlStateNormal];
     [button addTarget:self action:@selector(actionName) forControlEvents:UIControlEventTouchUpInside];
@@ -66,7 +72,124 @@
     [button addTarget:self action:@selector(weixinhaoyou) forControlEvents:UIControlEventTouchUpInside];
     [button setBackgroundColor:[UIColor greenColor]];
     [self.view addSubview:button];
+    
+    
+    frame = CGRectMake(200, 50, 100, 50);
+    button = [[UIButton alloc]initWithFrame:frame];
+    [button setTitle:@"QQ登录" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(QQLogin) forControlEvents:UIControlEventTouchUpInside];
+    [button setBackgroundColor:[UIColor grayColor]];
+    [self.view addSubview:button];
+    
+    frame.origin.y += 70;
+    button = [[UIButton alloc]initWithFrame:frame];
+    [button setTitle:@"发给好友" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(QQFriend) forControlEvents:UIControlEventTouchUpInside];
+    [button setBackgroundColor:[UIColor grayColor]];
+    [self.view addSubview:button];
+    
+    frame.origin.y += 70;
+    button = [[UIButton alloc]initWithFrame:frame];
+    [button setTitle:@"发到QQ空间" forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(QQZone) forControlEvents:UIControlEventTouchUpInside];
+    [button setBackgroundColor:[UIColor grayColor]];
+    [self.view addSubview:button];
 }
+#pragma mark - QQ
+
+- (void)QQLogin
+{
+    self.appDelegate.platformType = PlatformTypeQQ;
+    NSArray* permissions = [NSArray arrayWithObjects:
+                            @"get_user_info", @"get_simple_userinfo", @"add_t",                            nil];
+    [self.tencentOauth authorize:permissions inSafari:NO];
+}
+
+- (TencentOAuth *)tencentOauth{
+    if (!_tencentOauth) {
+        _tencentOauth = [[TencentOAuth alloc]initWithAppId:@"1104804404" andDelegate:self];
+    }
+    return _tencentOauth;
+}
+
+- (void)QQZone
+{
+    NSString *urlString = @"http://www.laodong.me/blog-cms/";
+    NSString *previewImageUrlString = @"test.jpg";
+    
+    self.appDelegate.platformType = PlatformTypeQQ;
+    self.tencentOauth;
+    //这里初始化TencentOAuth 否则会出现 QQApiSendResultCode 会得到 EQQAPIAPPNOTREGISTED 的值 无法调用QQ面板
+    
+//    QQApiNewsObject *newObj = [QQApiNewsObject objectWithURL:[NSURL URLWithString:urlString] title:@"个人博客搭建" description:@"description" previewImageURL:[NSURL URLWithString:previewImageUrl]];
+    QQApiNewsObject *newObj = [QQApiNewsObject objectWithURL:[NSURL URLWithString:urlString] title:@"title" description:@"description" previewImageData:[NSData dataWithContentsOfURL:[NSURL URLWithString:previewImageUrlString]]];
+    SendMessageToQQReq *request = [SendMessageToQQReq reqWithContent:newObj];
+    QQApiSendResultCode code = [QQApiInterface SendReqToQZone:request];
+    NSLog(@"code : %d", code);
+    
+    
+}
+
+
+- (void)QQFriend
+{
+    /*
+    QQApiTextObject *textObject = [QQApiTextObject objectWithText:@"Hello!!!!!"];
+    SendMessageToQQReq *request = [SendMessageToQQReq reqWithContent:textObject];
+    QQApiSendResultCode sent = [QQApiInterface sendReq:request];
+     */
+    
+    self.appDelegate.platformType = PlatformTypeQQ;
+    self.tencentOauth;
+    //这里初始化TencentOAuth 否则会出现 QQApiSendResultCode 会得到 EQQAPIAPPNOTREGISTED 的值 无法调用QQ面板
+    
+    NSData *data = UIImageJPEGRepresentation([UIImage imageNamed:@"test.jpg"], 1);
+    QQApiImageObject *imageObj = [QQApiImageObject objectWithData:data previewImageData:data title:@"title" description:@"description"];
+    SendMessageToQQReq *request = [SendMessageToQQReq reqWithContent:imageObj];
+    QQApiSendResultCode sent = [QQApiInterface sendReq:request];
+    
+    NSLog(@"sent : %d", sent);
+}
+
+- (void)tencentDidLogin
+{
+    NSLog(@"QQ登录完成");
+    if (self.tencentOauth.accessToken.length > 0) {
+        NSLog(@"----Tencent----\naccessToken:%@\nopenId:%@expirationDate:%@", self.tencentOauth.accessToken, self.tencentOauth.openId, self.tencentOauth.expirationDate);
+        [self QQGetUserInfo];
+    }else{
+        NSLog(@"登录不成功，没有获取到access_token");
+    }
+}
+
+- (void)QQGetUserInfo
+{
+    NSString *urlString = [NSString stringWithFormat:@"https://openmobile.qq.com/user/get_simple_userinfo?access_token=%@&oauth_consumer_key=%@&openid=%@", self.tencentOauth.accessToken, self.tencentOauth.appId, self.tencentOauth.openId];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
+    [manager GET:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"success %@", responseObject);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"获取QQ用户资料失败 %@", error.description);
+    }];
+}
+
+- (void)tencentDidNotLogin:(BOOL)cancelled
+{
+    if (cancelled) {
+        NSLog(@"QQ用户取消登录");
+    }else {
+        NSLog(@"QQ登录失败");
+    }
+}
+
+- (void)tencentDidNotNetWork
+{
+    NSLog(@"因为网络问题导致的QQ登录失败");
+}
+
+#pragma mark - 微信
 
 - (void)weixinhaoyou
 {
@@ -177,6 +300,7 @@
 
 - (void)actionName
 {
+    self.appDelegate.platformType = PlatformTypeWeibo;
     WBAuthorizeRequest *request = [WBAuthorizeRequest request];
     request.redirectURI = @"https://api.weibo.com/oauth2/default.html";
     request.scope = @"all";

@@ -26,6 +26,12 @@
     //微信
     [WXApi registerApp:@"wxd930ea5d5a258f4f"];
     
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        NSLog(@"横屏");
+    }else{
+        NSLog(@"竖屏");
+    }
+    
     return YES;
 }
 
@@ -55,16 +61,20 @@
 {
     if (self.platformType == PlatformTypeWeibo) {
         return [WeiboSDK handleOpenURL:url delegate:self];
+    }else if (self.platformType == PlatformTypeWeixin) {
+        return [WXApi handleOpenURL:url delegate:self];
     }
-    return [WXApi handleOpenURL:url delegate:self];
+    return [TencentOAuth HandleOpenURL:url];
 }
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     if (self.platformType == PlatformTypeWeibo) {
         return [WeiboSDK handleOpenURL:url delegate:self];
+    }else if (self.platformType == PlatformTypeWeixin) {
+        return [WXApi handleOpenURL:url delegate:self];
     }
-    return [WXApi handleOpenURL:url delegate:self];
+    return [TencentOAuth HandleOpenURL:url];
 }
 
 - (void)didReceiveWeiboResponse:(WBBaseResponse *)response

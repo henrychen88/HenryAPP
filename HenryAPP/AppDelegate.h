@@ -10,7 +10,8 @@
 
 #import <WeiboSDK.h>
 #import "WXApi.h"
-
+#import <TencentOpenAPI/TencentApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
 #import "ViewController.h"
 
 

@@ -10,6 +10,15 @@
 		7335C0FB3A5269AF04D86F58 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9176F90DB852BF16F18B4A45 /* libPods.a */; };
 		BA78EC6C1B72EE8C00EB5045 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BA78EC6B1B72EE8C00EB5045 /* test.jpg */; };
 		BAA36DE41B708F3E00E07401 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA36DCE1B708D4500E07401 /* CoreTelephony.framework */; };
+		BADBE2AB1B7838CF00F1238A /* TencentOpenApi_IOS_Bundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BADBE2A91B7838CF00F1238A /* TencentOpenApi_IOS_Bundle.bundle */; };
+		BADBE2AC1B7838CF00F1238A /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BADBE2AA1B7838CF00F1238A /* TencentOpenAPI.framework */; };
+		BADBE2AD1B78390800F1238A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA36DDC1B708E9D00E07401 /* Security.framework */; };
+		BADBE2AF1B78391400F1238A /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BADBE2AE1B78391400F1238A /* libiconv.dylib */; };
+		BADBE2B01B78391E00F1238A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA36DDA1B708E9600E07401 /* SystemConfiguration.framework */; };
+		BADBE2B11B783F7D00F1238A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA36DE21B708EB400E07401 /* CoreGraphics.framework */; };
+		BADBE2B21B783F8600F1238A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA36DD21B708E7A00E07401 /* libsqlite3.dylib */; };
+		BADBE2B41B783F9A00F1238A /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BADBE2B31B783F9A00F1238A /* libstdc++.dylib */; };
+		BADBE2B51B783FA200F1238A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BAA36DD01B708E6F00E07401 /* libz.dylib */; };
 		BAE370511B7479C000263DFA /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAE3704E1B7479C000263DFA /* libWeChatSDK.a */; };
 		BAE8FD9A1B707F7200A55DC5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE8FD991B707F7200A55DC5 /* main.m */; };
 		BAE8FD9D1B707F7200A55DC5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE8FD9C1B707F7200A55DC5 /* AppDelegate.m */; };
@@ -46,6 +55,10 @@
 		BAA36DDE1B708EA400E07401 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BAA36DE01B708EAD00E07401 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BAA36DE21B708EB400E07401 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		BADBE2A91B7838CF00F1238A /* TencentOpenApi_IOS_Bundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TencentOpenApi_IOS_Bundle.bundle; sourceTree = "<group>"; };
+		BADBE2AA1B7838CF00F1238A /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		BADBE2AE1B78391400F1238A /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		BADBE2B31B783F9A00F1238A /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		BAE3704E1B7479C000263DFA /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		BAE3704F1B7479C000263DFA /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		BAE370501B7479C000263DFA /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -71,7 +84,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BADBE2B51B783FA200F1238A /* libz.dylib in Frameworks */,
+				BADBE2B41B783F9A00F1238A /* libstdc++.dylib in Frameworks */,
 				BAA36DE41B708F3E00E07401 /* CoreTelephony.framework in Frameworks */,
+				BADBE2B21B783F8600F1238A /* libsqlite3.dylib in Frameworks */,
+				BADBE2B11B783F7D00F1238A /* CoreGraphics.framework in Frameworks */,
+				BADBE2B01B78391E00F1238A /* SystemConfiguration.framework in Frameworks */,
+				BADBE2AF1B78391400F1238A /* libiconv.dylib in Frameworks */,
+				BADBE2AD1B78390800F1238A /* Security.framework in Frameworks */,
+				BADBE2AC1B7838CF00F1238A /* TencentOpenAPI.framework in Frameworks */,
 				7335C0FB3A5269AF04D86F58 /* libPods.a in Frameworks */,
 				BAE370511B7479C000263DFA /* libWeChatSDK.a in Frameworks */,
 			);
@@ -90,6 +111,8 @@
 		8CE7563ED1D290DA1D59A2D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BADBE2B31B783F9A00F1238A /* libstdc++.dylib */,
+				BADBE2AE1B78391400F1238A /* libiconv.dylib */,
 				BAA36DE21B708EB400E07401 /* CoreGraphics.framework */,
 				BAA36DE01B708EAD00E07401 /* Foundation.framework */,
 				BAA36DDE1B708EA400E07401 /* UIKit.framework */,
@@ -113,6 +136,15 @@
 				886C87BE3AA3B284B116787E /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		BADBE2A81B78384600F1238A /* QQOpen */ = {
+			isa = PBXGroup;
+			children = (
+				BADBE2A91B7838CF00F1238A /* TencentOpenApi_IOS_Bundle.bundle */,
+				BADBE2AA1B7838CF00F1238A /* TencentOpenAPI.framework */,
+			);
+			name = QQOpen;
 			sourceTree = "<group>";
 		};
 		BAE3704D1B74799B00263DFA /* WeiXinOpen */ = {
@@ -148,6 +180,7 @@
 		BAE8FD961B707F7200A55DC5 /* HenryAPP */ = {
 			isa = PBXGroup;
 			children = (
+				BADBE2A81B78384600F1238A /* QQOpen */,
 				BAE3704D1B74799B00263DFA /* WeiXinOpen */,
 				BA78EC6B1B72EE8C00EB5045 /* test.jpg */,
 				BAE8FD9B1B707F7200A55DC5 /* AppDelegate.h */,
@@ -275,6 +308,7 @@
 				BAE8FDA31B707F7200A55DC5 /* Main.storyboard in Resources */,
 				BAE8FDA81B707F7200A55DC5 /* LaunchScreen.xib in Resources */,
 				BAE8FDA51B707F7200A55DC5 /* Images.xcassets in Resources */,
+				BADBE2AB1B7838CF00F1238A /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				BA78EC6C1B72EE8C00EB5045 /* test.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,6 +489,10 @@
 			baseConfigurationReference = 6D511C77183F9F3FB4F0B92F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HenryAPP",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HenryApp/HenryAPP.pch";
 				INFOPLIST_FILE = HenryAPP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -462,6 +500,33 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/WeiboSDK/libWeiboSDK",
 					"$(PROJECT_DIR)/HenryAPP",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"Pods-AFNetworking\"",
+					"-l\"WeiboSDK\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-fobjc-arc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -472,6 +537,10 @@
 			baseConfigurationReference = 886C87BE3AA3B284B116787E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HenryAPP",
+				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/HenryApp/HenryAPP.pch";
 				INFOPLIST_FILE = HenryAPP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -479,6 +548,33 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/WeiboSDK/libWeiboSDK",
 					"$(PROJECT_DIR)/HenryAPP",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"Pods-AFNetworking\"",
+					"-l\"WeiboSDK\"",
+					"-l\"sqlite3\"",
+					"-l\"z\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"MobileCoreServices\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"UIKit\"",
+					"-fobjc-arc",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
