@@ -15,6 +15,13 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "AppDelegate.h"
 
+#define XXX @"fff"
+
+const NSString *A = @"A";
+NSString * const B = @"B";
+
+static NSString const * C = @"xx";
+
 @interface ViewController ()<TencentSessionDelegate>
 /** description */
 @property(nonatomic, strong) UITableView *tabelView;
@@ -37,7 +44,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
+        
     CGRect frame = CGRectMake(50, 50, 100, 50);
     UIButton *button = [[UIButton alloc]initWithFrame:frame];
     [button setTitle:@"微博登陆" forState:UIControlStateNormal];
@@ -94,6 +101,14 @@
     [button addTarget:self action:@selector(QQZone) forControlEvents:UIControlEventTouchUpInside];
     [button setBackgroundColor:[UIColor grayColor]];
     [self.view addSubview:button];
+    
+    A = @"C";
+    
+    NSLog(@"A %@", A);
+    
+    C = @"ff";
+    
+    NSLog(@"C:%@", C);
 }
 #pragma mark - QQ
 

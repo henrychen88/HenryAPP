@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "ViewController.h"
 #import <AFNetworking.h>
 
 @interface AppDelegate ()
@@ -18,6 +18,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    extern NSString *A;
+//    ViewControllerFlag = @"xxx";
+    A = @"x";
+    NSLog(@"ViewControllerFlag : %@", A);
+    NSLog(@"%@", B);
+    
+//    [NSNotificationCenter defaultCenter] addObserver:self selector:@selector(xxx) name:UIApplicationDidBecomeActiveNotification object:<#(id)#>
+    NSLog(@"%@", UIApplicationDidBecomeActiveNotification);
+    
+    
     
     //微博
     [WeiboSDK enableDebugMode:YES];

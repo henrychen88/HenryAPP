@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+UIKIT_EXTERN NSString *const B;
+
 @interface ViewController : UIViewController
 
 @end
